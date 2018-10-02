@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>StageBright</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js" defer></script>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="grey lighten-5">
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo left grey-text text-darken-3">StageBright</a>
+        <ul class="right grey-text text-darken-3">
+          {{#if currentUser}}
+          <li><a href="/post/new" class="grey-text text-darken-3">New Post</a></li>
+          <li><a href="/user/{{currentUser.id}}" class="grey-text text-darken-3">Profile</a></li>
+          <li><a href="/user/logout" class="grey-text text-darken-3">Log Out</a></li>
+          {{else}}
+          <li class="grey-text text-darken-3"><a href="/user/login" class="grey-text text-darken-3">Log In</a></li>
+          <li class="grey-text text-darken-3"><a href="/user/signup" class="grey-text text-darken-3">Sign Up</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    {{{ body }}}
+  </main>
+</body>
+
+</html>
