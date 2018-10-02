@@ -1,15 +1,19 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png"> -->
-    <router-view />
+    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+    <Post />
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'App'
-  }
+  import Post from './components/Post.vue'
 
+  export default {
+    name: 'app',
+    components: {
+      Post
+    }
+  }
 </script>
 
 <style>
@@ -21,5 +25,4 @@
     color: #2c3e50;
     margin-top: 60px;
   }
-
 </style>
