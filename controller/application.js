@@ -1,5 +1,6 @@
 const Post = require('../models/post')
 
+// router.get('/', applicationController.index)
 module.exports = {
   index: (req, res) => {
     Post.find({})
