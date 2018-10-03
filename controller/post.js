@@ -15,30 +15,23 @@ module.exports = {
   // post('/post', postController.create)
   // NOTE: NEEDS TO BE AUTHENTICATED
   create: (req, res) => {
-    if (req.user) {
-      Post.create({
-        title: req.body.title,
-        description: req.body.description,
-        type: req.body.type,
-        url: req.body.url,
-        likes: 0
-      }).then(post => {
-        res.redirect(`/post/${post._id}`)
-      })
-    } else {
-      res.redirect('/user/login')
-    }
+    Post.create({
+      title: req.body.title,
+      description: req.body.description,
+      type: req.body.type,
+      url: req.body.url,
+      likes: 0,
+      author: req.user._id
+    }).then(post => {
+      res.redirect(`/post/${post._id}`)
+    })
   },
   // get('/post/:id', postController.show)
   show: (req, res) => {
     Post.findOne({ _id: req.params.id })
       .populate('author')
       .then(post => {
-        if (req.user) {
-          res.render('post/show', { post: post, user: req.user })
-        } else {
-          res.render('post/show', post)
-        }
+        res.render('post/show', post)
       })
   },
   // get('/post/:id/edit', postController.edit)
@@ -47,7 +40,12 @@ module.exports = {
   },
   // put('/post/:id', postController.update)
   update: (req, res) => {
-    res.send('this is our post using put request')
+    if (!req.body.name) {
+      currentUser._id
+      // User.findByIdAndUpdate(currentUser._id)
+    } else {
+      console.log('this is where the big edit to user is supposed to go')
+    }
   },
   // delete('/post/:id', postController.destroy)
   destroy: (req, res) => {

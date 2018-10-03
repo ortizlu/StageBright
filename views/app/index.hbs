@@ -17,11 +17,11 @@
     <div class="card-content">
       <a class="card-title" href="/post/{{id}}">
         {{ title }} -
-        {{ author.email }} -
+        {{ author.name }} -
         {{type}} -
         {{ likes }} Likes
       </a>
-      <a href="/post/{{id}}"><img src="{{url}}" alt=""></a>
+      <a href="/post/{{id}}"><img src="{{url}}" alt="" class="img-responsive"></a>
     </div>
     <div class="card-action">
       <a href="/user/{{ author.id }}" class="">{{ author.email }}</a>

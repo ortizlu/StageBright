@@ -13,4 +13,13 @@ router.get('/:id', userController.show)
 // router.get('/:id', userController.update)
 // router.get('/:id', userController.delete)
 
+function checkAuthentication(req, res, next) {
+  if (req.isAuthenticated()) {
+    //req.isAuthenticated() will return true if user is logged in
+    next()
+  } else {
+    res.redirect('/user/login')
+  }
+}
+
 module.exports = router

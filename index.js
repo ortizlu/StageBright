@@ -15,6 +15,15 @@ app.use(cookieParser())
 app.use(bodyParser())
 
 hbs.registerPartials(__dirname + '/views/partials')
+hbs.registerHelper('equal', function(lvalue, rvalue, options) {
+  if (arguments.length < 3)
+    throw new Error('Handlebars Helper equal needs 2 parameters')
+  if (lvalue != rvalue) {
+    return options.inverse(this)
+  } else {
+    return options.fn(this)
+  }
+})
 app.set('view engine', 'hbs')
 app.set('views', __dirname + '/views')
 // used for using the public folder in express

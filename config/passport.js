@@ -21,6 +21,7 @@ module.exports = function(passport) {
         passReqToCallback: true
       },
       function(req, email, password, callback) {
+        const name = req.body.name
         // check to see if this email is taken
         User.findOne({ email: email }, function(err, user) {
           if (err) return callback(err)
@@ -35,6 +36,7 @@ module.exports = function(passport) {
           // if the email is not taken, create a new user
           else {
             const newUser = new User()
+            newUser.name = name
             newUser.email = email
             newUser.password = newUser.encrypt(password)
 

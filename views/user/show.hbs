@@ -1,0 +1,18 @@
+{{currentUser.name}}
+{{ currentUser.email}}
+
+{{#if currentUser.bio}}
+{{currentUser.bio}}
+{{else}}
+<form method="post" action="/post/:id?_method=PUT">
+  <div>
+    <textarea name="bio" cols="30" rows="10" placeholder="bio"></textarea>
+  </div>
+  <input class="btn btn-default" type="submit">
+</form>
+{{/if}}
+Add a bio
+
+{{#equal req.user userProfile }}
+<div>THEY ARE EQUAL</div>
+{{/equal}}

@@ -35,7 +35,7 @@ module.exports = {
   },
   // get('/user/:id', userController.show)
   show: (req, res) => {
-    console.log(req.params.id)
+    res.render('user/show', { userProfile: req.params.id })
   }
   // // get('/user/:id/edit', userController.edit)
   // edit: (req, res) => {
