@@ -6,27 +6,39 @@ module.exports = {
   // get('/post/new', postController.new)
   // NOTE: NEEDS TO BE AUTHENTICATED
   new: (req, res) => {
-    res.render('post/new')
+    if (req.user) {
+      res.render('post/new')
+    } else {
+      res.redirect('/user/login')
+    }
   },
   // post('/post', postController.create)
   // NOTE: NEEDS TO BE AUTHENTICATED
   create: (req, res) => {
-    Post.create({
-      title: req.body.title,
-      description: req.body.description,
-      type: req.body.type,
-      url: req.body.url,
-      likes: 0
-    }).then(post => {
-      res.redirect(`/post/${post._id}`)
-    })
+    if (req.user) {
+      Post.create({
+        title: req.body.title,
+        description: req.body.description,
+        type: req.body.type,
+        url: req.body.url,
+        likes: 0
+      }).then(post => {
+        res.redirect(`/post/${post._id}`)
+      })
+    } else {
+      res.redirect('/user/login')
+    }
   },
   // get('/post/:id', postController.show)
   show: (req, res) => {
     Post.findOne({ _id: req.params.id })
       .populate('author')
       .then(post => {
-        res.render('post/show', post)
+        if (req.user) {
+          res.render('post/show', { post: post, user: req.user })
+        } else {
+          res.render('post/show', post)
+        }
       })
   },
   // get('/post/:id/edit', postController.edit)
