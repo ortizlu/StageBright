@@ -15,15 +15,18 @@ module.exports = {
   // post('/post', postController.create)
   // NOTE: NEEDS TO BE AUTHENTICATED
   create: (req, res) => {
-    Post.create({
-      title: req.body.title,
-      description: req.body.description,
-      type: req.body.type,
-      url: req.body.url,
-      likes: 0,
-      author: req.user._id
-    }).then(post => {
-      res.redirect(`/post/${post._id}`)
+    User.findById(req.user._id).then(user => {
+      Post.create({
+        title: req.body.title,
+        description: req.body.description,
+        type: req.body.type,
+        url: req.body.url,
+        likes: 0,
+        author: req.user._id
+      }).then(post => {
+        user.posts.push(post)
+        res.redirect(`/post/${post._id}`)
+      })
     })
   },
   // get('/post/:id', postController.show)

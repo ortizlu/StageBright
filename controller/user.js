@@ -35,9 +35,11 @@ module.exports = {
   },
   // get('/user/:id', userController.show)
   show: (req, res) => {
-    User.findById(req.params.id).then(user => {
-      res.render('user/show', { user })
-    })
+    User.findById(req.params.id)
+      .populate('posts')
+      .then(user => {
+        res.render('user/show', { user })
+      })
   },
   // get('/user/:id/edit', userController.edit)
   edit: (req, res) => {

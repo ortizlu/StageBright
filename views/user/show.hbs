@@ -16,13 +16,32 @@ No bio added yet
 
 {{else}}
 <br><br>Add a bio
-<form method="post" action="/post/:id?_method=PUT">
+<form method="post" action="/user/{{currentUser.id}}?_method=PUT">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input class="form-control" type="text" value="{{currentUser.name}}" name="name" id="name" hidden>
+  </div>
+
   <div>
     <textarea name="bio" cols="30" rows="10" placeholder="bio"></textarea>
   </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input class="form-control" value="{{currentUser.email}}" type="text" name="email" id="email" hidden>
+  </div>
+
+
   <input class="btn btn-default" type="submit">
 </form>
 
 {{/if}}
-{{else}}
 {{/equal}}
+
+MY WORK
+{{#each user.posts}}
+<a href="/post/{{id}}">
+  <img src="{{url}}" alt="" class="thumbnail" style="width: 100px; height: 100px">
+</a>
+
+{{/each}}
