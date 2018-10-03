@@ -1,18 +1,28 @@
-{{currentUser.name}}
-{{ currentUser.email}}
+{{user.name}}
+{{ user.email}}
+<br>
+Bio: <br>
+{{#if user.bio}}
+{{user.bio}}
+{{else}}
+No bio added yet
+{{/if}}
 
+{{#equal currentUser.id user.id }}
 {{#if currentUser.bio}}
 {{currentUser.bio}}
+
+<a href="/user/{{currentUser.id}}/edit">Edit User</a>
+
 {{else}}
+<br><br>Add a bio
 <form method="post" action="/post/:id?_method=PUT">
   <div>
     <textarea name="bio" cols="30" rows="10" placeholder="bio"></textarea>
   </div>
   <input class="btn btn-default" type="submit">
 </form>
-{{/if}}
-Add a bio
 
-{{#equal req.user userProfile }}
-<div>THEY ARE EQUAL</div>
+{{/if}}
+{{else}}
 {{/equal}}

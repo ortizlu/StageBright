@@ -35,16 +35,24 @@ module.exports = {
   },
   // get('/user/:id', userController.show)
   show: (req, res) => {
-    res.render('user/show', { userProfile: req.params.id })
+    User.findById(req.params.id).then(user => {
+      res.render('user/show', { user })
+    })
+  },
+  // get('/user/:id/edit', userController.edit)
+  edit: (req, res) => {
+    res.render('user/edit')
+  },
+  // put('/user/:id', userController.update)
+  update: (req, res) => {
+    User.findByIdAndUpdate(req.params.id, {
+      name: req.body.name,
+      bio: req.body.bio,
+      email: req.body.email
+    }).then(updatedUser => {
+      res.redirect('/user/' + updatedUser._id)
+    })
   }
-  // // get('/user/:id/edit', userController.edit)
-  // edit: (req, res) => {
-  //   console.log('this is our edit route that needs to be built')
-  // },
-  // // put('/user/:id', userController.update)
-  // update: (req, res) => {
-  //   console.log('this is our update route that needs to be built')
-  // },
   // // delete('/user/:id', userController.delete)
   // destroy: (req, res) => {
   //   console.log('this is our destroy route that needs to be built')

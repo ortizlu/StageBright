@@ -1,0 +1,20 @@
+<h2>Edit</h2>
+
+<form method="post" action="/user/{{currentUser.id}}?_method=PUT">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input class="form-control" type="text" value="{{currentUser.name}}" name="name" id="name">
+  </div>
+
+  <div class="form-group">
+    <label for="Bio">Bio</label>
+    <input class="form-control" type="text" value="{{currentUser.bio}}" name="bio" id="name">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input class="form-control" value="{{currentUser.email}}" type="text" name="email" id="email">
+  </div>
+
+  <input class="btn btn-default" type="submit">
+</form>

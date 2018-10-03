@@ -9,9 +9,9 @@ router.get('/signup', userController.signupForm)
 router.post('/signup', userController.signupSend)
 router.get('/logout', userController.logout)
 router.get('/:id', userController.show)
-// router.get('/:id/edit', userController.edit)
-// router.get('/:id', userController.update)
-// router.get('/:id', userController.delete)
+router.get('/:id/edit', userController.edit)
+router.put('/:id', userController.update)
+// router.delete('/:id', userController.delete)
 
 function checkAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
