@@ -50,7 +50,8 @@ module.exports = {
     User.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
       bio: req.body.bio,
-      email: req.body.email
+      email: req.body.email,
+      posts: []
     }).then(updatedUser => {
       res.redirect('/user/' + updatedUser._id)
     })

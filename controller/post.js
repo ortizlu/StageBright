@@ -15,7 +15,7 @@ module.exports = {
   // post('/post', postController.create)
   // NOTE: NEEDS TO BE AUTHENTICATED
   create: (req, res) => {
-    User.findById(req.user._id).then(user => {
+    User.findById(req.user._id).then(foundUser => {
       Post.create({
         title: req.body.title,
         description: req.body.description,
@@ -24,7 +24,7 @@ module.exports = {
         likes: 0,
         author: req.user._id
       }).then(post => {
-        user.posts.push(post)
+        foundUser.posts.push(post)
         res.redirect(`/post/${post._id}`)
       })
     })
