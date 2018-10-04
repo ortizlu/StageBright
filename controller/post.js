@@ -4,16 +4,10 @@ const User = require('../models/user')
 
 module.exports = {
   // get('/post/new', postController.new)
-  // NOTE: NEEDS TO BE AUTHENTICATED
   new: (req, res) => {
-    if (req.user) {
-      res.render('post/new')
-    } else {
-      res.redirect('/user/login')
-    }
+    res.render('post/new')
   },
   // post('/post', postController.create)
-  // NOTE: NEEDS TO BE AUTHENTICATED
   create: (req, res) => {
     User.findById(req.user._id).then(foundUser => {
       Post.create({
@@ -40,19 +34,61 @@ module.exports = {
   },
   // get('/post/:id/edit', postController.edit)
   edit: (req, res) => {
-    res.send('this is our post using get request')
+    Post.findById(req.params.id).then(post => {
+      if (String(post.author) == String(req.user._id)) {
+        res.render('post/edit', post)
+      } else {
+        res.redirect('/')
+      }
+    })
   },
   // put('/post/:id', postController.update)
   update: (req, res) => {
-    if (!req.body.name) {
-      currentUser._id
-      // User.findByIdAndUpdate(currentUser._id)
-    } else {
-      console.log('this is where the big edit to user is supposed to go')
-    }
+    // create a global variable to store owner of post
+    let owner
+    // find post and assign author to owner
+    Post.findById(req.params.id)
+      .then(foundPost => {
+        owner = foundPost.author
+      })
+      .then(_ => {
+        // check if post belongs to signed in user
+        if (String(owner) == String(req.user._id)) {
+          // and update if so
+          Post.findByIdAndUpdate(req.params.id, {
+            title: req.body.title,
+            description: req.body.description,
+            mediatype: req.body.mediatype,
+            url: req.body.url
+          }).then(post => {
+            res.redirect('/post/' + req.params.id)
+          })
+        } else {
+          // but redirect if it isn't
+          res.redirect('/')
+        }
+      })
   },
   // delete('/post/:id', postController.destroy)
   destroy: (req, res) => {
-    res.send('this is our post using delete request')
+    // create a global variable to store owner of post
+    let owner
+    // find post and assign author to owner
+    Post.findById(req.params.id)
+      .then(foundPost => {
+        owner = foundPost.author
+      })
+      .then(_ => {
+        // check if post belongs to signed in user
+        if (String(owner) == String(req.user._id)) {
+          // and update if so
+          Post.findByIdAndRemove(req.params.id).then(_ => {
+            res.redirect('/')
+          })
+        } else {
+          // otherwise don't delete but redirect only
+          res.redirect('/')
+        }
+      })
   }
 }

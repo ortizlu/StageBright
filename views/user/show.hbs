@@ -8,10 +8,11 @@ No bio added yet
 {{/if}}
 
 {{#equal currentUser.id user.id }}
+<a href="/user/{{currentUser.id}}/edit">Edit User</a>
+
 {{#if currentUser.bio}}
 {{currentUser.bio}}
 
-<a href="/user/{{currentUser.id}}/edit">Edit User</a>
 
 {{else}}
 <br><br>Add a bio

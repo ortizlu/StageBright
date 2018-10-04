@@ -43,20 +43,48 @@ module.exports = {
   },
   // get('/user/:id/edit', userController.edit)
   edit: (req, res) => {
-    res.render('user/edit')
+    // find current user
+    User.findById(req.params.id).then(user => {
+      // and compare to signed in user
+      if (String(user.id) == String(req.user._id)) {
+        // show edit user if same
+        res.render('user/edit')
+      } else {
+        // otherwise redirect
+        res.redirect('/')
+      }
+    })
   },
   // put('/user/:id', userController.update)
   update: (req, res) => {
-    User.findByIdAndUpdate(req.params.id, {
-      name: req.body.name,
-      bio: req.body.bio,
-      email: req.body.email
-    }).then(updatedUser => {
-      res.redirect('/user/' + updatedUser._id)
+    // find current user
+    User.findById(req.params.id).then(user => {
+      // and compare to signed in user
+      if (String(user.id) == String(req.user._id)) {
+        User.findByIdAndUpdate(req.params.id, {
+          name: req.body.name,
+          bio: req.body.bio,
+          email: req.body.email
+        }).then(updatedUser => {
+          res.redirect('/user/' + updatedUser._id)
+        })
+      } else {
+        // otherwise redirect
+        res.redirect('/')
+      }
+    })
+  },
+  // delete('/user/:id', userController.delete)
+  destroy: (req, res) => {
+    User.findById(req.params.id).then(user => {
+      if (String(user.id) == req.user._id) {
+        req.logout()
+        User.findByIdAndRemove(req.params.id).then(_ => {
+          res.redirect('/')
+        })
+      } else {
+        res.redirect('/')
+      }
     })
   }
-  // // delete('/user/:id', userController.delete)
-  // destroy: (req, res) => {
-  //   console.log('this is our destroy route that needs to be built')
-  // }
 }

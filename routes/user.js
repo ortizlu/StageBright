@@ -11,7 +11,7 @@ router.get('/logout', userController.logout)
 router.get('/:id', userController.show)
 router.get('/:id/edit', checkAuthentication, userController.edit)
 router.put('/:id', checkAuthentication, userController.update)
-// router.delete('/:id', userController.delete)
+router.delete('/:id', checkAuthentication, userController.destroy)
 
 function checkAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
