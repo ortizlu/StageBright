@@ -5,7 +5,10 @@ const Post = new Schema({
   title: String,
   description: String,
   mediatype: String,
-  url: String,
+  url: {
+    type: String,
+    required: true
+  },
   likes: Number,
   author: {
     type: Schema.Types.ObjectId,

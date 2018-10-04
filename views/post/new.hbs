@@ -1,6 +1,6 @@
 <section class="form-container">
   <h4>New Post</h4>
-  <form action="/post/" method="post" class="Post-form">
+  <form action="/post/" enctype="multipart/form-data" method="post" class="Post-form">
     <input type="text" name="title" placeholder="title">
     <div class="input-field">
       <textarea name="description" cols="30" rows="10" placeholder="Description"></textarea>
@@ -11,7 +11,7 @@
       <option value="song">Song</option>
       <option value="lyric">Lyric/Poem</option>
     </select>
-    <input type="text" placeholder="url" name="url">
+    <input type="file" name="url">
     </div>
     <div class="input-field">
       <input type="submit" value="Post" class="btn">

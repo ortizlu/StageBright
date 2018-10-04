@@ -10,11 +10,13 @@ module.exports = {
   // post('/post', postController.create)
   create: (req, res) => {
     User.findById(req.user._id).then(foundUser => {
+      console.log(req.file.filename)
       Post.create({
+        _id: new mongoose.Types.ObjectId(),
         title: req.body.title,
         description: req.body.description,
         mediatype: req.body.mediatype,
-        url: req.body.url,
+        url: req.file.path.substring(7),
         likes: 0,
         author: req.user._id
       }).then(post => {
@@ -59,7 +61,7 @@ module.exports = {
             title: req.body.title,
             description: req.body.description,
             mediatype: req.body.mediatype,
-            url: req.body.url
+            url: req.file.path.substring(7)
           }).then(post => {
             res.redirect('/post/' + req.params.id)
           })

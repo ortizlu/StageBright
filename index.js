@@ -1,5 +1,9 @@
 const express = require('express')
 const app = express()
+const dotenv = require('dotenv')
+
+dotenv.config()
+
 const flash = require('connect-flash')
 const hbs = require('hbs')
 const cookieParser = require('cookie-parser')
@@ -28,8 +32,9 @@ app.set('view engine', 'hbs')
 app.set('views', __dirname + '/views')
 // used for using the public folder in express
 app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/uploads'))
 // the secret is what is used to compute the hash. Without this string (which could be anything) access to the session would essentially be denied.
-app.use(session({ secret: 'SECRET-EXPRESS-PASSWORD' }))
+app.use(session({ secret: process.env.SESSION_SECRET }))
 app.use(flash())
 // secret session cookie is signed with this secret to prevent tampering???????
 // used for flash messages
