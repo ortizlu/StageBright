@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const Post = new Schema({
   title: String,
   description: String,
-  type: String,
+  mediatype: String,
   url: String,
   likes: Number,
   author: {

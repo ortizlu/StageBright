@@ -19,12 +19,13 @@ module.exports = {
       Post.create({
         title: req.body.title,
         description: req.body.description,
-        type: req.body.type,
+        mediatype: req.body.mediatype,
         url: req.body.url,
         likes: 0,
         author: req.user._id
       }).then(post => {
         foundUser.posts.push(post)
+        foundUser.save()
         res.redirect(`/post/${post._id}`)
       })
     })
