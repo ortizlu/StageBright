@@ -40,7 +40,7 @@ module.exports = {
       if (String(post.author) == String(req.user._id)) {
         res.render('post/edit', post)
       } else {
-        res.redirect('/')
+        res.redirect('/home')
       }
     })
   },
@@ -67,7 +67,7 @@ module.exports = {
           })
         } else {
           // but redirect if it isn't
-          res.redirect('/')
+          res.redirect('/home')
         }
       })
   },
@@ -85,11 +85,11 @@ module.exports = {
         if (String(owner) == String(req.user._id)) {
           // and update if so
           Post.findByIdAndRemove(req.params.id).then(_ => {
-            res.redirect('/')
+            res.redirect('/home')
           })
         } else {
           // otherwise don't delete but redirect only
-          res.redirect('/')
+          res.redirect('/home')
         }
       })
   }

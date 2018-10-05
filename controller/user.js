@@ -51,7 +51,7 @@ module.exports = {
         res.render('user/edit')
       } else {
         // otherwise redirect
-        res.redirect('/')
+        res.redirect('/home')
       }
     })
   },
@@ -70,7 +70,7 @@ module.exports = {
         })
       } else {
         // otherwise redirect
-        res.redirect('/')
+        res.redirect('/home')
       }
     })
   },
@@ -80,10 +80,10 @@ module.exports = {
       if (String(user.id) == req.user._id) {
         req.logout()
         User.findByIdAndRemove(req.params.id).then(_ => {
-          res.redirect('/')
+          res.redirect('/home')
         })
       } else {
-        res.redirect('/')
+        res.redirect('/home')
       }
     })
   }

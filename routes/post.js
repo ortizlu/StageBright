@@ -34,7 +34,6 @@ var uploadMiddleware = multer({
 })
 
 //====================================
-
 router.get('/new', checkAuthentication, postController.new)
 router.post(
   '/',
