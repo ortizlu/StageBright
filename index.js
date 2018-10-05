@@ -37,7 +37,7 @@ app.set('views', __dirname + '/views')
 app.use(express.static(__dirname + '/public'))
 app.use(express.static(__dirname + '/uploads'))
 // the secret is what is used to compute the hash. Without this string (which could be anything) access to the session would essentially be denied.
-app.use(session({ secret: process.env.SESSION_SECRET }))
+app.use(session({ secret: 'SECRET-EXPRESS-PASSWORD2' }))
 app.use(flash())
 // secret session cookie is signed with this secret to prevent tampering???????
 // used for flash messages
