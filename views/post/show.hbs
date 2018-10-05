@@ -3,6 +3,14 @@
     <h3 class="text-light text-center">{{title}}</h3>
     <h4 class="text-light text-center">Created by: {{author.name}}</h4>
     <h4 class="text-light text-center">Type of art: {{mediatype}}</h4>
+    {{#equal currentUser.id author.id }}
+    <div>
+      <a href="/post/{{id}}/edit" class="mt-7">Update Post</a>
+    </div>
+    {{else}}
+    {{/equal}}
     <img class="img img-thumbnail mt-3" src="https://s3.amazonaws.com/stagebright/uploads{{url}}" alt="Card image cap">
+
+
   </div>
 </div>
