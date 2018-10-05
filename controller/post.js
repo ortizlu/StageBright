@@ -8,9 +8,9 @@ module.exports = {
     res.render('post/new')
   },
   // post('/post', postController.create)
-  create: (req, res) => {
+  create: (req, res, next) => {
     User.findById(req.user._id).then(foundUser => {
-      console.log(req.file.filename)
+      console.log(req.file)
       Post.create({
         _id: new mongoose.Types.ObjectId(),
         title: req.body.title,
@@ -45,7 +45,7 @@ module.exports = {
     })
   },
   // put('/post/:id', postController.update)
-  update: (req, res) => {
+  update: (req, res, next) => {
     // create a global variable to store owner of post
     let owner
     // find post and assign author to owner

@@ -1,17 +1,20 @@
 const express = require('express')
-const app = express()
 const dotenv = require('dotenv')
-
+// environment variables
 dotenv.config()
-
+const aws = require('aws-sdk')
 const flash = require('connect-flash')
 const hbs = require('hbs')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+// multer for file storage
+const multer = require('multer')
 const session = require('express-session')
 const indexRoutes = require('./routes/index')
 const passport = require('passport')
 const methodOverride = require('method-override')
+
+const app = express()
 
 app.use(methodOverride('_method'))
 // morgan is used for logging request details. It makes the 200 console.logs we see in the terminal when requesting a site

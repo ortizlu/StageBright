@@ -1,16 +1,19 @@
 const express = require('express')
+const aws = require('aws-sdk')
 const router = express.Router()
 const postController = require('../controller/post')
 const multer = require('multer')
+const S3 = require('multer-storage-s3')
 
-// MULTER JS FILE UPLOADING
-const storage = multer.diskStorage({
+var storage = S3({
   destination: function(req, file, cb) {
     cb(null, 'uploads')
   },
   filename: function(req, file, cb) {
-    cb(null, new Date().toISOString() + file.originalname)
-  }
+    cb(null, file.fieldname + '-' + Date.now())
+  },
+  bucket: 'stagebright',
+  region: 'us-east-1'
 })
 
 const fileFilter = (req, file, cb) => {
@@ -22,8 +25,11 @@ const fileFilter = (req, file, cb) => {
   }
 }
 
-const upload = multer({
+//should limit files up to 20mb
+// and file filter filters for photos only
+var uploadMiddleware = multer({
   storage: storage,
+  limits: { fileSize: 17878130 },
   fileFilter: fileFilter
 })
 
@@ -33,7 +39,7 @@ router.get('/new', checkAuthentication, postController.new)
 router.post(
   '/',
   checkAuthentication,
-  upload.single('url'),
+  uploadMiddleware.single('url'),
   postController.create
 )
 router.get('/:id', postController.show)
@@ -41,7 +47,7 @@ router.get('/:id/edit', checkAuthentication, postController.edit)
 router.put(
   '/:id',
   checkAuthentication,
-  upload.single('url'),
+  uploadMiddleware.single('url'),
   postController.update
 )
 router.delete('/:id', checkAuthentication, postController.destroy)

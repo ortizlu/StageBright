@@ -1,24 +1,45 @@
 <section class="form-container">
-  <h4>Edit Post</h4>
+  <h1 class="text-center mt-5 text-light">Edit Post</h1>
   <form action="/post/{{id}}?_method=PUT" enctype="multipart/form-data" method="post" class="Post-form">
-    <input type="text" name="title" placeholder="title" value="{{title}}">
-    <div class="input-field">
-      <textarea name="description" cols="30" rows="10" placeholder="Description">{{description}}</textarea>
+
+    <div class="form-group">
+      <label for="title" class="text-light">Title</label>
+      <input type="text" class="form-control" id="title" name="title" value="{{title}}" aria-describedby="emailHelp"
+        placeholder="Title">
     </div>
-    <select name="mediatype">
-      <option value="photo">Photo</option>
-      <option value="video">Video</option>
-      <option value="song">Song</option>
-      <option value="lyric">Lyric/Poem</option>
-    </select>
-    <input type="file" name="url">
+
+
+    <div class="form-group">
+      <label for="title" class="text-light">Description</label>
+      <textarea name="description" class="form-control" cols="30" rows="10" aria-describedby="descriptionOfArtwork"
+        placeholder="Description">{{description}}</textarea>
     </div>
-    <div class="input-field">
-      <input type="submit" value="Post" class="btn">
+
+    <div class="form-group">
+      <label for="mediatype" class="text-light">Type of Art</label>
+      <select class="form-control" id="mediatype">
+        <option value="photo">Photo</option>
+        <option value="video">Video</option>
+        <option value="song">Song</option>
+        <option value="lyric">Lyric/Poem</option>
+      </select>
+    </div>
+
+    <div class="mt-5 flex-container justify-content-center">
+      <div class="upload-btn-wrapper">
+        <button class="btn btn-dark btn-lg">Upload a file</button>
+        <input type="file" name="url" />
+      </div>
+
+      <div class="ml-3 input-field">
+        <input type="submit" value="Post" class="btn btn-dark btn-lg">
+      </div>
+
+      <form action="/post/{{id}}?_method=DELETE" method="POST">
+        <button class="ml-3 btn btn-dark btn-lg">Delete Post</button>
+      </form>
+
     </div>
   </form>
 
-  <form action="/post/{{id}}?_method=DELETE" method="POST">
-    <button>DELETE POST</button>
-  </form>
 </section>

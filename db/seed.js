@@ -19,19 +19,17 @@ User.find({}).remove(() => {
           title: 'The waffle?',
           description: 'This is a photo I took of a waffle',
           mediatype: 'photo',
-          url:
-            'https://images.unsplash.com/photo-1535266438678-16e3f1cdc9b1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e9ca3d0e3513193f54c0ad0527ce1358&auto=format&fit=crop&w=634&q=80',
+          url: '/waffle1.jpeg',
           likes: 3,
           author: user._id
         }).then(post => {
           user.posts.push(post)
         }),
         Post.create({
-          title: 'The waffle?',
-          description: 'This is a photo I took of a waffle',
+          title: 'Pancake Bliss',
+          description: 'This is a photo I took of a pancake',
           mediatype: 'photo',
-          url:
-            'https://images.unsplash.com/photo-1535266438678-16e3f1cdc9b1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e9ca3d0e3513193f54c0ad0527ce1358&auto=format&fit=crop&w=634&q=80',
+          url: '/waffle2.jpeg',
           likes: 3,
           author: user._id
         }).then(post => {
@@ -51,11 +49,10 @@ User.find({}).remove(() => {
     }).then(user => {
       Promise.all([
         Post.create({
-          title: 'The waffle?',
+          title: 'My Red Hot Rod',
           description: 'This is my beater car',
           mediatype: 'photo',
-          url:
-            'https://images.unsplash.com/photo-1532988633349-d3dfb28ee834?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=27db7bd25fb02721c56f744d6bce008c&auto=format&fit=crop&w=934&q=80',
+          url: '/car1.jpeg',
           likes: 3,
           author: user._id
         }).then(post => {
@@ -65,8 +62,7 @@ User.find({}).remove(() => {
           title: 'White Car',
           description: 'This is my weekender car',
           mediatype: 'photo',
-          url:
-            'https://images.unsplash.com/photo-1531163953594-bc9a034fafb1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7871bcd85a128e3983f3844e44362f28&auto=format&fit=crop&w=800&q=60',
+          url: '/car2.jpeg',
           likes: 3,
           author: user._id
         }).then(post => {
@@ -90,8 +86,7 @@ User.find({}).remove(() => {
           description:
             "This is a photo I took of myself during a nightly bath. Don't I look so chic?",
           mediatype: 'photo',
-          url:
-            'https://images.unsplash.com/photo-1536680682715-03cca719f893?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=81ea9340ba532db4ca827d418facc939&auto=format&fit=crop&w=800&q=60',
+          url: '/queen1.jpeg',
           likes: 3,
           author: user._id
         }).then(post => {
@@ -102,8 +97,7 @@ User.find({}).remove(() => {
           title: 'Picture of my castle',
           description: 'This is my castle description',
           mediatype: 'photo',
-          url:
-            'https://images.unsplash.com/photo-1533154613417-407cfcf6abb2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b87f07734d410f07579a2c41d783eb7e&auto=format&fit=crop&w=800&q=60',
+          url: '/queen2.jpeg',
           likes: 3,
           author: user._id
         }).then(post => {
