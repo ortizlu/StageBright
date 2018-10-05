@@ -1,6 +1,56 @@
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: #262b2f
+  background-color: #212529;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.mt-6 {
+  margin-top: 4rem !important;
+}
+
+.mt-7 {
+  margin-top: 8rem !important;
+}
+
+.large {
+  font-size: 6rem;
+}
+
+.small {
+  font-size: 1rem;
+}
+
+.background {
+  filter: blur(5px) brightness(49%);
+}
+
+.carousel-caption {
+  bottom: 30%;
+}
+
+.carousel-item:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.6) 56%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+.center-btn {
+  display: block;
+  margin: 0 auto;
 }
 
 .upload-btn-wrapper {
@@ -21,7 +71,7 @@ body {
   cursor: pointer;
 }
 
-.upload-btn-wrapper input[type=file] {
+.upload-btn-wrapper input[type='file'] {
   font-size: 100px;
   position: absolute;
   left: 0;
@@ -41,7 +91,19 @@ body {
   margin-right: 15px;
 }
 
+h5 {
+  display: inline-block;
+  padding: 10px;
+  background: #b9121b;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
 
+.full-screen {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 .card-action {
   text-align: center;
@@ -50,4 +112,9 @@ body {
 .flex-container {
   display: flex;
   margin: 0 auto;
+}
+
+.shadow {
+  text-shadow: 0px 2px 1px rgba(150, 150, 150, 1);
+  box-shadow: none !important;
 }

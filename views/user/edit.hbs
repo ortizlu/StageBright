@@ -1,24 +1,26 @@
-<h2>Edit</h2>
+<div class="container">
+  <h2>Edit</h2>
 
-<form method="post" action="/user/{{currentUser.id}}?_method=PUT">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input class="form-control" type="text" value="{{currentUser.name}}" name="name" id="name">
-  </div>
+  <form method="post" action="/user/{{currentUser.id}}?_method=PUT" class="mt-7">
+    <div class="form-group">
+      <label for="name" class="text-light">Name</label>
+      <input class="form-control" type="text" value="{{currentUser.name}}" name="name" id="name">
+    </div>
 
-  <div class="form-group">
-    <label for="Bio">Bio</label>
-    <input class="form-control" type="text" value="{{currentUser.bio}}" name="bio" id="name">
-  </div>
+    <div class="form-group">
+      <label for="Bio" class="text-light">Bio</label>
+      <input class="form-control" type="text" value="{{currentUser.bio}}" name="bio" id="name">
+    </div>
 
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input class="form-control" value="{{currentUser.email}}" type="text" name="email" id="email">
-  </div>
+    <div class="form-group">
+      <label for="email" class="text-light">Email</label>
+      <input class="form-control" value="{{currentUser.email}}" type="text" name="email" id="email">
+    </div>
 
-  <input class="btn btn-default" type="submit">
-</form>
+    <input class="btn btn-dark btn-lg" type="submit">
+  </form>
 
-<form action="/user/{{currentUser.id}}?_method=DELETE" method="POST">
-  <button>DELETE MY ACCOUNT</button>
-</form>
+  <form action="/user/{{currentUser.id}}?_method=DELETE" method="POST">
+    <button class="btn btn-dark btn-lg mt-3">Delete account</button>
+  </form>
+</div>
