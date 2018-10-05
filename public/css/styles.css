@@ -33,6 +33,15 @@ a:hover {
   bottom: 30%;
 }
 
+.one-post {
+  text-align: center;
+}
+
+.img {
+  width: 40%;
+  margin: 0 auto;
+}
+
 .carousel-item:before {
   content: '';
   position: absolute;
