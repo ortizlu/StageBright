@@ -22,7 +22,6 @@ module.exports = {
       }).then(post => {
         foundUser.posts.push(post)
         foundUser.save()
-        res.redirect(`/post/${post._id}`)
       })
     })
   },
@@ -31,16 +30,16 @@ module.exports = {
     Post.findOne({ _id: req.params.id })
       .populate('author')
       .then(post => {
-        res.render('post/show', post)
+        res.json(post)
       })
   },
   // get('/post/:id/edit', postController.edit)
   edit: (req, res) => {
     Post.findById(req.params.id).then(post => {
       if (String(post.author) == String(req.user._id)) {
-        res.render('post/edit', post)
+        res.json(post)
       } else {
-        res.redirect('/home')
+        res.send(401)
       }
     })
   },
@@ -85,11 +84,11 @@ module.exports = {
         if (String(owner) == String(req.user._id)) {
           // and update if so
           Post.findByIdAndRemove(req.params.id).then(_ => {
-            res.redirect('/home')
+            res.json(_)
           })
         } else {
           // otherwise don't delete but redirect only
-          res.redirect('/home')
+          res.send(401)
         }
       })
   }

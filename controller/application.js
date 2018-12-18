@@ -11,7 +11,7 @@ module.exports = {
       .limit(10)
       .populate('author')
       .then(posts => {
-        res.render('app/index', { posts })
+        res.json(posts)
       })
   }
 }
