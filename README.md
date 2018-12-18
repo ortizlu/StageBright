@@ -1,30 +1,5 @@
 # stagebright
 
-> A Vue.js project
+> This is a project that I tried building using Vue. Due to time constraints, I defaulted to using Handlebars for the Views. This is a hub for creatives all around the world to showcase their work. It will eventually be invite only, so as to make the quality of the work much better. The app is currently pushed to https://stagebright.herokuapp.com/
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+The app that is currently showcased is in the branch WOVUE (meaning: Without Vue) In the future I hope to implement Vue and transform the back-end to push out JSON
